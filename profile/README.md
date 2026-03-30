@@ -19,7 +19,11 @@
 
 ## What is pablo.health?
 
-[Pablo](https://pablo.health) is an AI-powered documentation assistant for therapists and prescribers in solo and small-group practice. It turns session recordings into SOAP notes — with additional note formats (DAP, BIRP) on the roadmap.
+Therapists lose hours every week to documentation. Solo practitioners and small practices have always been priced out of the compliance infrastructure and documentation tooling that large health systems take for granted.
+
+[Pablo](https://pablo.health) changes that. It turns session recordings into SOAP notes with HIPAA-compliant infrastructure that any practice can afford.
+
+SOAP notes are the start. We're building toward a complete documentation layer for clinical practice — so therapists can reclaim the hours they lose to admin work.
 
 > **You review and approve every note. Nothing is filed automatically. Ever.**
 
@@ -66,6 +70,18 @@ Cross-platform HIPAA-compliant audio capture — the open layer beneath every Pa
 
 ---
 
+## Make it yours
+
+Your practice, your workflow — Pablo adapts to how you work, not the other way around.
+
+- **Self-host on your infrastructure** — your data never leaves your control. Run it on your own GCP account.
+- **Open source (AGPL-3.0)** — fork it, modify it, adapt it to your practice.
+- **Extensible architecture** — swap note formats, AI models, or integrations without touching core code.
+
+Or just use [Pablo Solo](https://pablo.health) and let us handle everything.
+
+---
+
 ## Why we build in the open
 
 Healthcare AI has a verification problem. Every vendor claims HIPAA compliance. Every marketing page says your data is safe. You're expected to take their word for it.
@@ -76,6 +92,8 @@ We think that's wrong — especially when the data is therapy sessions.
 - **Security improves in the open.** Community review catches what private audits miss.
 - **Clinicians shouldn't have to trust black boxes.** Read the code. Understand it. Then decide.
 
+Bootstrapped. No investors demanding we monetize your data, raise prices, or sell to an EHR company.
+
 ---
 
 ## Get Started
@@ -84,7 +102,7 @@ We think that's wrong — especially when the data is therapy sessions.
 |---|---|---|
 | **Hosting** | Your GCP account | pablo.health |
 | **HIPAA** | You manage compliance | BAA included |
-| **Price** | Free (AGPL-3.0) | From $14/mo |
+| **Price** | Free (AGPL-3.0) | [See pricing](https://pablo.health) |
 | **Setup** | `./setup-solo.sh` | [Sign up](https://pablo.health) |
 
 ---
