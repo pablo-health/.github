@@ -6,9 +6,10 @@
 
 **AI-powered therapy documentation — built in the open.**
 
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%20v3-E8A849?style=flat-square&labelColor=3D2B1F)](https://github.com/pablo-health/AudioCaptureKit/blob/main/LICENSE)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%20v3-E8A849?style=flat-square&labelColor=3D2B1F)](https://github.com/pablo-health/pablo/blob/main/LICENSE)
 [![HIPAA Compliant](https://img.shields.io/badge/HIPAA-Compliant-7A9E7E?style=flat-square&labelColor=3D2B1F)](https://pablo.health)
-[![Platforms](https://img.shields.io/badge/Platforms-macOS%20%7C%20Windows-89B4C8?style=flat-square&labelColor=3D2B1F)](https://github.com/pablo-health/AudioCaptureKit)
+[![Platforms](https://img.shields.io/badge/Platforms-macOS%20%7C%20Windows-89B4C8?style=flat-square&labelColor=3D2B1F)](https://github.com/pablo-health/pablo-companion)
+[![Self‑Host](https://img.shields.io/badge/Self--Host-GCP-B8A9C9?style=flat-square&labelColor=3D2B1F)](https://github.com/pablo-health/pablo)
 
 *We build in the open because therapists deserve to verify what touches their sessions — not just trust a marketing page.*
 
@@ -18,37 +19,51 @@
 
 ## What is pablo.health?
 
-[Pablo](https://pablo.health) is an AI-powered documentation assistant for therapists and prescribers in solo and small-group practice. It turns session recordings into clinical notes — SOAP, DAP, BIRP — then a second NLP verification layer confirms every generated claim is grounded in what was actually said.
+[Pablo](https://pablo.health) is an AI-powered documentation assistant for therapists and prescribers in solo and small-group practice. It turns session recordings into clinical notes — SOAP, DAP, BIRP — then a dual-method verification layer (LLM + classical NLP) confirms every generated claim is grounded in what was actually said.
 
 > **You review and approve every note. Nothing is filed automatically. Ever.**
 
-The clinical AI space has a transparency problem. We're fixing that — one open source component at a time.
+Self-host on your own GCP account with one script, or let us handle infrastructure with [Pablo Solo](https://pablo.health).
 
 ---
 
-## Open Source
-
-### 🎙️ [AudioCaptureKit](https://github.com/pablo-health/AudioCaptureKit)
-
-> *HIPAA-compliant audio capture — the open layer beneath Pablo's session recording.*
-
-AudioCaptureKit is the cross-platform library that every Pablo session runs on. It handles secure microphone capture, end-to-end encryption, and prepares audio for HIPAA-compliant cloud processing — on macOS and Windows.
-
-Before you trust any AI with a therapy session, you should be able to read how your audio is captured. So we open sourced it.
+## Open Source Repos
 
 ```
-Session  →  AudioCaptureKit  →  encrypted upload  →  Pablo AI  →  clinical note
-              (you can read                            (HIPAA-eligible GCP)
-               this part)
+┌─────────────────────────────────────────────────────────┐
+│  Pablo Companion (desktop)                              │
+│  Click Start Session → records + launches video call    │
+│  ┌───────────────────────────────┐                      │
+│  │  AudioCaptureKit              │                      │
+│  │  encrypted audio capture      │                      │
+│  └──────────────┬────────────────┘                      │
+│                 │ encrypted upload                       │
+│                 ▼                                        │
+│  ┌───────────────────────────────┐                      │
+│  │  Pablo (backend + web app)    │                      │
+│  │  AI note generation           │                      │
+│  │  dual-method verification     │                      │
+│  │  calendar · patient mgmt      │                      │
+│  └───────────────────────────────┘                      │
+│        your GCP  ·  or  ·  pablo.health                 │
+└─────────────────────────────────────────────────────────┘
 ```
 
-**What it does:**
-- Cross-platform: macOS (Swift / CoreAudio) and Windows (Rust / WASAPI)
-- Encrypted on-device from the first byte
-- Designed for HIPAA-eligible environments
-- Zero PHI in logs, encrypted in transit
+### [Pablo](https://github.com/pablo-health/pablo) &nbsp; — &nbsp; platform &amp; backend
 
-[→ View AudioCaptureKit](https://github.com/pablo-health/AudioCaptureKit)
+The full web app and API. Next.js + FastAPI + Firestore, deployable to Cloud Run with a single setup script. Includes AI note generation, built-in calendar, patient management, and audit logging.
+
+```bash
+git clone https://github.com/pablo-health/pablo.git && cd pablo && ./setup-solo.sh
+```
+
+### [Pablo Companion](https://github.com/pablo-health/pablo-companion) &nbsp; — &nbsp; desktop app
+
+Native macOS and Windows app that sits in the menu bar during the workday. Therapists see today's sessions, click **Start Session**, and Pablo automatically records and launches their video call (Zoom, Teams, or Google Meet). Monorepo: shared Rust core with SwiftUI (macOS) and WinUI 3 (Windows).
+
+### [AudioCaptureKit](https://github.com/pablo-health/AudioCaptureKit) &nbsp; — &nbsp; audio capture library
+
+Cross-platform HIPAA-compliant audio capture — the open layer beneath every Pablo session recording. macOS (Swift / CoreAudio) and Windows (Rust / WASAPI). Encrypted on-device from the first byte, zero PHI in logs.
 
 ---
 
@@ -58,12 +73,20 @@ Healthcare AI has a verification problem. Every vendor claims HIPAA compliance. 
 
 We think that's wrong — especially when the data is therapy sessions.
 
-AudioCaptureKit is open source because:
 - **Transparency earns trust.** Therapists and their patients deserve to know exactly how audio is captured, encrypted, and handled.
 - **Security improves in the open.** Community review catches what private audits miss.
 - **Clinicians shouldn't have to trust black boxes.** Read the code. Understand it. Then decide.
 
-More of Pablo's infrastructure will open over time. This is the start.
+---
+
+## Get Started
+
+| | Self-Host | Managed (Pablo Solo) |
+|---|---|---|
+| **Hosting** | Your GCP account | pablo.health |
+| **HIPAA** | You manage compliance | BAA included |
+| **Price** | Free (AGPL-3.0) | From $14/mo |
+| **Setup** | `./setup-solo.sh` | [Sign up](https://pablo.health) |
 
 ---
 
@@ -71,7 +94,7 @@ More of Pablo's infrastructure will open over time. This is the start.
 
 Built by [Kurt Niemi](https://linkedin.com/in/kurtniemi) for therapists like his sister Kendra — PMHNP-BC, solo private practice.
 
-[pablo.health](https://pablo.health) &nbsp;·&nbsp; [Get early access](https://pablo.health#signup)
+[pablo.health](https://pablo.health) &nbsp;·&nbsp; [Sign up](https://pablo.health#signup) &nbsp;·&nbsp; [Self-host](https://github.com/pablo-health/pablo)
 
 *Pablo's got it.*
 
