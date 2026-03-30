@@ -19,7 +19,7 @@
 
 ## What is pablo.health?
 
-[Pablo](https://pablo.health) is an AI-powered documentation assistant for therapists and prescribers in solo and small-group practice. It turns session recordings into clinical notes — SOAP, DAP, BIRP — then a dual-method verification layer (LLM + classical NLP) confirms every generated claim is grounded in what was actually said.
+[Pablo](https://pablo.health) is an AI-powered documentation assistant for therapists and prescribers in solo and small-group practice. It turns session recordings into SOAP notes — with additional note formats (DAP, BIRP) on the roadmap.
 
 > **You review and approve every note. Nothing is filed automatically. Ever.**
 
@@ -41,8 +41,7 @@ Self-host on your own GCP account with one script, or let us handle infrastructu
 │                 ▼                                        │
 │  ┌───────────────────────────────┐                      │
 │  │  Pablo (backend + web app)    │                      │
-│  │  AI note generation           │                      │
-│  │  dual-method verification     │                      │
+│  │  AI SOAP note generation      │                      │
 │  │  calendar · patient mgmt      │                      │
 │  └───────────────────────────────┘                      │
 │        your GCP  ·  or  ·  pablo.health                 │
@@ -51,7 +50,7 @@ Self-host on your own GCP account with one script, or let us handle infrastructu
 
 ### [Pablo](https://github.com/pablo-health/pablo) &nbsp; — &nbsp; platform &amp; backend
 
-The full web app and API. Next.js + FastAPI + Firestore, deployable to Cloud Run with a single setup script. Includes AI note generation, built-in calendar, patient management, and audit logging.
+The full web app and API. Next.js + FastAPI + Firestore, deployable to Cloud Run with a single setup script. Includes AI SOAP note generation, built-in calendar, patient management, and audit logging.
 
 ```bash
 git clone https://github.com/pablo-health/pablo.git && cd pablo && ./setup-solo.sh
